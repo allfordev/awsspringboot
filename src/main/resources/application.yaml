@@ -1,0 +1,61 @@
+spring:
+  application:
+    #name: "dankafkaclient"
+    name: "AwsSpringBoot"
+  kafka:
+    bootstrap-servers: "localhost:9092"
+    consumer:
+      group-id: "client-app"
+      client-id: "client-app"
+      auto-offset-reset: "earliest"
+      key-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+      value-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+    producer:
+      acks: "all"
+      group-id: "client-app"
+      client-id: "client-app"
+      key-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+      value-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+  security:
+    user:
+      name: "user"
+      password: "w1bblef1sht0mato"
+  datasource:
+    url: "jdbc:mysql://localhost:3306/test"
+    username: "root"
+    password: ""
+    driver-class-name: "com.mysql.cj.jdbc.Driver"
+    #url: "jdbc:postgresql://localhost:5432/danallford"
+    #username: "danallford"
+    #password: ""
+  jpa:
+    properties:
+      hibernate:
+        #dialect: "org.hibernate.dialect.PostgreSQLDialect"
+    hibernate:
+      ddl-auto: "update"
+    show-sql: "true"
+  logging:
+    level:
+      web: "DEBUG"
+server:
+  port: 8181
+
+#  spring.jpa.hibernate.ddl-auto=update
+#  spring.datasource.url=jdbc:mysql://localhost:3306/mydatabase
+#  spring.datasource.username=myuser
+#  spring.datasource.password=secret
+#  spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#  spring.jpa.show-sql: true
+
+#  spring.application.name=AwsSpringBoot
+#
+#  spring.datasource.url=jdbc:postgresql://localhost:5432/danallford
+#  spring.datasource.username=danallford
+#  spring.datasource.password=
+#
+#  spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+#  spring.jpa.hibernate.ddl-auto=update
+#
+#  spring.security.user.name=user
+#  spring.security.user.password=password
