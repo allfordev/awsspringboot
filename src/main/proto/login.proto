@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package com.danallford.pigeons.proto;
+
 enum EventType {
     UNKNOWN = 0;
     LOGGED_IN = 1;
