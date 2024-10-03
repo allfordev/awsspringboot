@@ -18,6 +18,8 @@
 		<java.version>21</java.version>
 		<junit.version>4.12</junit.version>
 		<testng.version>7.1.0</testng.version>
+		<protobuf.version>3.6.1</protobuf.version>
+		<protoc.version>3.6.1</protoc.version>
 		<!--<aws.java.sdk.version>[2.0,)</aws.java.sdk.version>-->
 	</properties>
 	<dependencyManagement>
@@ -32,6 +34,20 @@
 		</dependencies>-->
 	</dependencyManagement>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/io.apicurio/apicurio-registry-serdes-avro-serde -->
+		<dependency>
+			<groupId>io.apicurio</groupId>
+			<artifactId>apicurio-registry-serdes-protobuf-serde</artifactId>
+			<version>2.4.1.Final</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.apicurio/apicurio-registry -->
+		<dependency>
+			<groupId>io.apicurio</groupId>
+			<artifactId>apicurio-registry</artifactId>
+			<version>2.4.1.Final</version>
+			<type>pom</type>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka-streams</artifactId>
@@ -118,6 +134,11 @@
 			<version>${testng.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java-util</artifactId>
+			<version>${protobuf.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -128,6 +149,24 @@
 				<configuration>
 					<mainClass>com.danallford.pigeons.app.PigeonsApplication</mainClass>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.xolstice.maven.plugins</groupId>
+				<artifactId>protobuf-maven-plugin</artifactId>
+				<version>0.5.1</version>
+				<configuration>
+					<protocArtifact>com.google.protobuf:protoc:${protoc.version}:exe:${os.detected.classifier}</protocArtifact>
+					<pluginId>grpc-java</pluginId>
+					<pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>compile-custom</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 <!--			<plugin>-->
 <!--				<groupId>-->

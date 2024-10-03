@@ -16,6 +16,9 @@ spring:
       client-id: "client-app"
       key-serializer: "org.apache.kafka.common.serialization.StringSerializer"
       value-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+  apicurio:
+    registry:
+      url: "localhost:8090"
   security:
     user:
       name: "user"

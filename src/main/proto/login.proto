@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+enum EventType {
+    UNKNOWN = 0;
+    LOGGED_IN = 1;
+    LOGGED_OUT = 2;
+    FAILED_LOGIN = 3;
+}
+
+message LoginMsg {
+  EventType eventType = 1;
+  int64 eventTime = 2;
+  string username = 3;
+  string birth_date = 4;
+}
